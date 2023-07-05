@@ -5,3 +5,8 @@ var cityTempature = $("#citytempature")
 var cityHumidity = $("#humidity")
 var cityWindspeed = $("#citywindspeed")
 var cityinput = $("#cityinput")
+var searchbutton =$("#searchbutton")
+
+searchbutton.on("click", function() {
+    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityinput.val()}&limit=1&appid=${apiKey}`)
+})
