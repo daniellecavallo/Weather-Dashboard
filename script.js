@@ -17,6 +17,12 @@ $(function() {
     })
     .then( function(data) {
     console.log(data)
+    var lat = data[0].lat
+    var lon = data[0].lon
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${apiKey}`).then(function(response) {
+    return response.json()
+    }).then(function(data) {
+    })
     })
     })
     
