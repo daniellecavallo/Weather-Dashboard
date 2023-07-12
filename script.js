@@ -27,13 +27,16 @@ $(function() {
     cityHumidity.text(data.main.humidity) 
     cityWindspeed.text(data.wind.speed) 
     })
-    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&appid=${apiKey}`).then(function(response) {
+    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`).then(function(response) {
         return response.json()
         }).then(function(data) {
         console.log(data)
         for (let i = 0; i < data.list.length; i += 8) {
         $(".forecast").each(function() {
-        
+        $(".date").text(data.list[i].dt_txt)
+        $(".temp").text(data.list[i].main.temp)
+        $(".wind").text(data.list[i].wind.speed)
+        $(".humid").text(data.list[i].main.humidity)
         })
         }
         })
