@@ -33,10 +33,10 @@ $(function() {
         console.log(data)
         for (let i = 0; i < data.list.length; i += 8) {
         $(".forecast").each(function() {
-        $(".date").text(data.list[i].dt_txt)
-        $(".temp").text(data.list[i].main.temp)
-        $(".wind").text(data.list[i].wind.speed)
-        $(".humid").text(data.list[i].main.humidity)
+        $(".date").text(`DATE: ${data.list[i].dt_txt}`)
+        $(".temp").text(`TEMP: ${data.list[i].main.temp}`)
+        $(".wind").text(`WIND: ${data.list[i].wind.speed}`)
+        $(".humid").text(`HUMIDITY: ${data.list[i].main.humidity}`)
         })
         }
         })
