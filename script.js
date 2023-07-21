@@ -22,10 +22,10 @@ $(function() {
     fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`).then(function(response) {
     return response.json()
     }).then(function(data) {
-    cityName.text(data.name) 
-    cityTempature.text(data.main.temp) 
-    cityHumidity.text(data.main.humidity) 
-    cityWindspeed.text(data.wind.speed) 
+    cityName.text(`CITY: ${data.name}`) 
+    cityTempature.text(`TEMPATURE: ${data.main.temp}`) 
+    cityHumidity.text(`HUMIDITY: ${data.main.humidity}`) 
+    cityWindspeed.text(`WINDSPEED: ${data.wind.speed}`) 
     })
     fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`).then(function(response) {
         return response.json()
