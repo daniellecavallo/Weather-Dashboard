@@ -6,8 +6,11 @@ var cityHumidity = $("#humidity")
 var cityWindspeed = $("#windspeed")
 var cityinput = $("#cityinput")
 var searchbutton = $("#searchbutton")
+var searchcities = []
 $(function() {
     searchbutton.on("click", function(event) {
+    searchcities.push(cityinput.val())
+    localStorage.setItem("cities", JSON.stringify(searchcities))
         event.preventDefault()
         console.log("click")
         fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityinput.val()}&limit=1&appid=${apiKey}`)
@@ -30,18 +33,15 @@ $(function() {
     fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${lat}&lon=${lon}&units=imperial&appid=${apiKey}`).then(function(response) {
         return response.json()
         }).then(function(data) {
-        console.log(data)
         for (let i = 0; i < data.list.length; i += 8) {
-        $(".forecast").each(function() {
-        $(".date").text(`DATE: ${data.list[i].dt_txt}`)
-        $(".temp").text(`TEMP: ${data.list[i].main.temp}`)
-        $(".wind").text(`WIND: ${data.list[i].wind.speed}`)
-        $(".humid").text(`HUMIDITY: ${data.list[i].main.humidity}`)
-        })
+            console.log(data.list[i])
+        $(".date").eq(i).text(`DATE: ${data.list[i].dt_txt}`)
+        $(".temp").eq(i).text(`TEMP: ${data.list[i].main.temp}`)
+        $(".wind").eq(i).text(`WIND: ${data.list[i].wind.speed}`)
+        $(".humid").eq(i).text(`HUMIDITY: ${data.list[i].main.humidity}`)
         }
-        })
     })
     })
     
 })
-
+})
