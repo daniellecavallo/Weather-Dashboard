@@ -34,10 +34,10 @@ function getweather (input){
         }).then(function(data) {
         for (let i = 0; i < data.list.length; i += 8) {
             console.log(data.list[i])
-        $(".date").eq(i).text(`DATE: ${data.list[i].dt_txt}`)
-        $(".temp").eq(i).text(`TEMP: ${data.list[i].main.temp}`)
-        $(".wind").eq(i).text(`WIND: ${data.list[i].wind.speed}`)
-        $(".humid").eq(i).text(`HUMIDITY: ${data.list[i].main.humidity}`)
+            $(".date").each( function() { $(this).text(`DATE: ${data.list[i].dt_txt}`)})
+            $(".temp").each( function() { $(this).text(`TEMP: ${data.list[i].main.temp}`)})
+            $(".wind").each( function() { $(this).text(`WIND: ${data.list[i].wind.speed}`)})
+            $(".humid").each( function() { $(this).text(`HUMIDITY: ${data.list[i].main.humidity}`)})
         }
     })
     })
