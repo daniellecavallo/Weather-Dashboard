@@ -11,13 +11,8 @@ var getlocal = localStorage.getItem ("cities")
 if (getlocal){
     searchcities = JSON.parse (getlocal)
 }
-$(function() {
-    searchbutton.on("click", function(event) {
-    searchcities.push(cityinput.val())
-    localStorage.setItem("cities", JSON.stringify(searchcities))
-        event.preventDefault()
-        console.log("click")
-        fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityinput.val()}&limit=1&appid=${apiKey}`)
+function getweather (input){
+    fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${input}&limit=1&appid=${apiKey}`)
     .then( function(response) {
     return response.json()
     
@@ -46,6 +41,13 @@ $(function() {
         }
     })
     })
-    
+}
+$(function() {
+    searchbutton.on("click", function(event) {
+    searchcities.push(cityinput.val())
+    localStorage.setItem("cities", JSON.stringify(searchcities))
+        event.preventDefault()
+        console.log("click")
+    getweather (cityinput.val())    
 })
 })
