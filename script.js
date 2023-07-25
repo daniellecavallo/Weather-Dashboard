@@ -7,6 +7,10 @@ var cityWindspeed = $("#windspeed")
 var cityinput = $("#cityinput")
 var searchbutton = $("#searchbutton")
 var searchcities = []
+var getlocal = localStorage.getItem ("cities")
+if (getlocal){
+    searchcities = JSON.parse (getlocal)
+}
 $(function() {
     searchbutton.on("click", function(event) {
     searchcities.push(cityinput.val())
